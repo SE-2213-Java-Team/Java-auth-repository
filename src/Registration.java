@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.SQLException;
+import static hasher.Hasher.hashString;
 public class Registration extends Objects {
     public boolean checkIIN(String IIN) {
         boolean isDigit = true;
@@ -57,7 +58,7 @@ public class Registration extends Objects {
                 Connection c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/ferrari", "postgres", "Monza2020");
                 String sql = "INSERT INTO users(iin, login, pass)"
                         + "VALUES ('" + getIIN() + "', '" +getLogin() +
-                        "', '" + getPassword() + "');";
+                        "', '" + hashString(getPassword()) + "');";
                 Statement stmt = c.createStatement();
                 int rows = stmt.executeUpdate(sql);
                 if(rows > 0){
