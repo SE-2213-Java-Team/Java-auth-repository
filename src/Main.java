@@ -1,5 +1,4 @@
 import java.util.Scanner;
-
 public class Main{
     public static void main(String[] args){
         String input;
@@ -26,17 +25,21 @@ public class Main{
                 }
                 continue;
             } else if (input.equals("auth")) {
-                System.out.print("Enter login or IIN: ");
-                auth.setLoginOrIin(sc.nextLine());
-                System.out.print("Enter password: ");
-                auth.setPassword(sc.nextLine());
-                if (reg.checkPassword(auth.getPassword())){
-                    if (auth.Author()){
-                        System.out.println("Authorization completed successfully!");
-                    }else{
-                        System.out.println("Try again!");
+                    System.out.print("Enter login or IIN: ");
+                    auth.setLoginOrIin(sc.nextLine());
+                    System.out.print("Enter password: ");
+                    auth.setPassword(sc.nextLine());
+                    if (reg.checkPassword(auth.getPassword())) {
+                        if (auth.Author()) {
+                            System.out.println("Authorization completed successfully!");
+                        } else {
+                            System.out.println("Try again!");
+                        }
+                    } else {
+                        System.out.println("    The password must be longer than 7 letters, " +
+                                "contain a capital letter, and a digit");
+                        System.out.println("    Try again");
                     }
-                }
             }CodeGen code = new CodeGen();
             SendMail mail = new SendMail("Your verification code for authorization: " + code.getCode());
             System.out.print("Enter verification code from your email: ");
