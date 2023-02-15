@@ -1,9 +1,9 @@
 package hasher;
 public class Hasher {
-    public static String hashString(String text) {
-        String hashedText = text.substring(0, 0);
-        hashedText = hashedText + "#################";
+    public static String hashPassword(String text) {
+        String hashPass = text.substring(0, 0);
+        hashPass = hashPass + "#########";
         String temp = text.substring(text.length());
-        return hashedText + temp;
+        return hashPass + temp;
     }
 }
