@@ -53,6 +53,7 @@ public class Registration extends Objects {
         }
     }
     public boolean regUser(){
+
         if(checkUser(getIIN(), getLogin(), getPassword()) && checkIIN(getIIN()) && checkPassword(getPassword())){
             try{
                 Connection c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/ferrari", "postgres", "Monza2020");
