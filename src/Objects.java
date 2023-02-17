@@ -1,9 +1,9 @@
-public abstract class Objects {
-    private String IIN;
+public abstract class Objects<N> {
+    private N IIN;
     private String Login;
     private String Password;
-    public String getIIN(){return IIN;}
-    public void setIIN(String IIN){this.IIN = IIN;}
+    public N getIIN(){return IIN;}
+    public void setIIN(N IIN){this.IIN = IIN;}
     public String getLogin(){return Login;}
     public void setLogin(String Login){this.Login = Login;}
     public String getPassword(){return Password;}
