@@ -1,7 +1,7 @@
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
-
+import java.util.ArrayList;
 import java.util.Scanner;
 public class Main{
     public static void main(String[] args){
@@ -19,22 +19,35 @@ public class Main{
         TelegramNotification notification = new TelegramNotification();
 
         while(true){
-            System.out.println("Choose: reg or auth");
+            ArrayList<String> actions = new ArrayList<>();
+            actions.add("Choose: reg");
+            actions.add("or");
+            actions.add("Choose: auth");
+            for(String s : actions){
+                System.out.println(s);
+            }
             do { input = sc.nextLine(); }
             while (!input.equals("reg") && !input.equals("auth"));
             if (input.equals("reg")) {
-                System.out.print("Enter login: ");
+                actions.add("Enter login: ");
+                actions.add("Enter IIN: ");
+                actions.add("Enter Password: ");
+                actions.add("Congratz! You complete registration!");
+                actions.add("Remember: IIN:12 digits");
+                actions.add("Password with uppercase, number and from 6 to 12 symbols");
+                actions.add("Login from 6 to 20 symbols, with uppercase and number");
+                System.out.print(actions.get(3));
                 reg.setLogin(sc.nextLine());
-                System.out.print("Enter IIN: ");
+                System.out.print(actions.get(4));
                 reg.setIIN(sc.nextLine());
-                System.out.print("Enter Password: ");
+                System.out.print(actions.get(5));
                 reg.setPassword(sc.nextLine());
                 if(reg.regUser()){
-                    System.out.println("Congratz! You complete registration!");
+                    System.out.println(actions.get(6));
                 }else{
-                    System.out.println("Remember: IIN:12 digits");
-                    System.out.println("Password with uppercase, number and from 6 to 12 symbols");
-                    System.out.println("Login from 6 to 20 symbols, with uppercase and number");
+                    System.out.println(actions.get(7));
+                    System.out.println(actions.get(8));
+                    System.out.println(actions.get(9));
                 }
                 continue;
             } else if (input.equals("auth")) {
@@ -48,14 +61,10 @@ public class Main{
                         } else {
                             System.out.println("Try again!");
                         }
-                    } else {
-                        System.out.println("    The password must be longer than 7 letters, " +
-                                "contain a capital letter, and a digit");
-                        System.out.println("    Try again");
                     }
             }
             CodeGen code = new CodeGen();
-            SendMail mail = new SendMail("Your verification code for authorization: " + code.getCode());
+            //SendMail mail = new SendMail("Your verification code for authorization: " + code.getCode());
             notification.setAnswer("Someone requested verification code. Code is " + code.getCode());
             System.out.print("Enter verification code from your email: ");
             while (!code.checkCode(sc.nextLine())) {
